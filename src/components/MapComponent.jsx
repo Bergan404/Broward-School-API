@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import pin from "../assets/Pin_map.svg";
 
 export default function MapComponent() {
     const mapRef = useRef(null);
@@ -9,6 +10,21 @@ export default function MapComponent() {
         const map = new window.google.maps.Map(mapRef.current, {
             center: { lat: 26.1901, lng: -80.3659 },
             zoom: 11,
+            styles: [
+                {
+                    featureType: 'poi',
+                    elementType: 'labels',
+                    stylers: [{ visibility: 'off' }]
+                },
+                {
+                    featureType: 'poi.business',
+                    stylers: [{ visibility: 'off' }]
+                },
+                {
+                    featureType: 'transit',
+                    stylers: [{ visibility: 'off' }]
+                }
+            ],
         });
 
         const school = {
@@ -62,6 +78,10 @@ export default function MapComponent() {
             position: school.position,
             map,
             title: school.name,
+            icon: {
+                url: "public/Pin_map.svg",
+                scaledSize: new google.maps.Size(40, 40),
+            },
         });
 
         // Add polygon (boundary)
@@ -78,7 +98,7 @@ export default function MapComponent() {
         // Click listener for marker
         marker.addListener('click', () => {
             map.panTo(school.position);
-            polygon.setMap(map); // Show boundary
+            polygon.setMap(map);
             alert(`School: ${school.name}`);
         });
     }, []);
