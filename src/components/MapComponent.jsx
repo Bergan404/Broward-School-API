@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import pin from "../assets/Pin_map.svg";
 
 export default function MapComponent() {
     const mapRef = useRef(null);
