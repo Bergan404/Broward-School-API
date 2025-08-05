@@ -5,6 +5,10 @@ export default function MapComponent() {
     let activePolygon = null;
 
     useEffect(() => {
+
+        console.log("Google:", window.google);
+        console.log("Map ref:", mapRef.current);
+
         if (!window.google) return;
 
         const map = new window.google.maps.Map(mapRef.current, {
