@@ -78,10 +78,6 @@ export default function MapComponent() {
             position: school.position,
             map,
             title: school.name,
-            icon: {
-                url: "public/Pin_map.svg",
-                scaledSize: new google.maps.Size(40, 40),
-            },
         });
 
         // Add polygon (boundary)

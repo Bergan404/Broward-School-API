@@ -1,16 +1,59 @@
 ---
-import MapComponent from '../components/MapComponent.jsx';
+import Layout from "../layouts/Layout.astro";
+
+import { Image } from "astro:assets";
+
+import Logo from "../assets/J-logo.svg?raw";
+
+import MapComponent from "../components/MapComponent.jsx";
 ---
 
-<html lang="en">
-  <head>
-    <title>School Map Test</title>
-    <script
-      src={`https://maps.googleapis.com/maps/api/js?key=AIzaSyABVpHEPw-iQuTcQ3fDlP_RLuZ_-lJ_f2U`}
-      defer
-    ></script>
-  </head>
-  <body>
-    <MapComponent client:load />
-  </body>
-</html>
+<Layout>
+  <div class="loader">
+    <svg
+      viewBox="0 0 41 35"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        id="assinatura"
+        d="M34.699 14.0821C34.699 14.0821 34.2733 13.4996 32.003 13.4996C29.7328 13.4996 24.0572 14.7374 21.9288 15.4656C19.8005 16.1937 13.2735 18.5965 9.08775 21.6547C4.90198 24.7128 1 28.0623 1 31.8485C1 35.6348 6.88845 34.1058 13.8411 29.737C20.7937 25.3682 27.7463 18.4509 27.7463 18.4509L34.699 11.0966C34.699 11.0966 40.9421 4.25254 39.8779 2.06779C38.8138 -0.116954 31.6114 1.60597 29.1652 2.35906C25.5145 3.48296 22.7802 4.63176 19.7295 5.99972C17.5302 6.98592 6.46274 12.917 3.12834 16.7033C-0.206067 20.4895 2.41889 20.0527 4.54724 19.6158C8.0945 18.8877 11.8546 15.9023 11.8546 15.9023"
+        stroke="white"
+        stroke-linecap="round"></path>
+    </svg>
+  </div>
+
+  <MapComponent client:load />
+</Layout>
+
+<style>
+  .loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: #1a1a1a;
+    display: grid;
+    place-content: center;
+  }
+
+  svg {
+    display: block;
+    max-width: 500px;
+    width: 500px;
+  }
+
+  #assinatura {
+    stroke-dasharray: 272;
+    stroke-dashoffset: 272;
+    animation: assinatura 8s infinite forwards;
+  }
+
+  @keyframes assinatura {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+</style>
